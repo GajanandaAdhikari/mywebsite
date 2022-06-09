@@ -1,0 +1,38 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    background-image: url(../images/IMG_7095-1.jpg);
+    background-size: cover;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul {
+    height: 10vh;
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: auto;
+    list-style: none;
+}
+
+nav ul li {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+nav ul li a,
+a,
+a {
+    text-decoration: none;
+    color: rgb(175, 20, 20);
+    font-family: Sharpen;
+    font-size: 25px;
+}
