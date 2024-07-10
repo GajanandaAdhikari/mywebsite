@@ -1,0 +1,63 @@
+#chart {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+  }
+  
+  .bar {
+    background: green;
+    display: inline-block;
+    text-align: center;
+    color: white;
+  }
+  
+  #chart div span {
+    visibility: hidden;
+    position: relative;
+  }
+  
+  #chart div:hover span {
+    visibility: visible;
+  }
+  
+  .comparing {
+    background-color: yellow;
+  }
+  
+  .merging {
+    background-color: red;
+  }
+  
+  .sorted {
+    background-color: green;
+  }
+  
+  .unsorted {
+    background-color: blue;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  #info {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Additional styles for mobile responsiveness */
+  @media (max-width: 600px) {
+    .buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  

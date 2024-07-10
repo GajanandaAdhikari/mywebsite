@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selection Sort Visualization</title>
+  <link rel="stylesheet" href="selection.css">
+  <style>
+    /* Additional mobile-responsive styles */
+    @media (max-width: 600px) {
+      #chart {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+  <div class="buttons">
+    <label for="speed">Speed</label>
+    <input type="range" id="speed" min="1" max="5" value="1">
+  </div>
+  <div class="buttons">
+    <label for="size">Size</label>
+    <input type="number" id="size" min="5" max="100" value="20"> 
+    <button id="start">Generate</button>
+  </div>
+
+  <!-- Algorithm Information -->
+  <div id="info">
+    <h2>Selection Sort Algorithm</h2>
+    <p><strong>Time Complexity:</strong> 
+      Best Case: O(n^2), Average Case: O(n^2), Worst Case: O(n^2)<br>
+      <strong>Space Complexity:</strong> O(1)</p>    
+      <h3>Simplicity</h3>
+      <p>Selection sort is simple to implement and understand, making it a good choice for educational purposes.</p>
+
+      <h3>Small Data Sets</h3>
+      <p>Selection sort can be effective for small data sets, and its performance is predictable regardless of the data's initial order.</p>
+
+      <h3>Memory Usage</h3>
+      <p>Selection sort has an advantage of requiring only a constant amount of additional memory space.</p>
+
+      <h3>Historical Context</h3>
+  <p>Selection sort is one of the simplest and earliest sorting algorithms studied in computer science. Its principles are fundamental in understanding sorting algorithms.</p>
+ </div>
+
+  <script src="selection.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+.algorithms {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    width: 200px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.visualize-btn, .select-btn {
+    background-color: #ccc;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.visualize-btn:hover, .select-btn:hover {
+    background-color: #bbb;
+}
+
+footer {
+    background-color: #e0e0e0;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.compare-btn {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.about-content {
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.about-content a {
+    color: #0000EE;
+    text-decoration: none;
+}
+
+.about-content a:hover {
+    text-decoration: underline;
+}
+
+blockquote {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-left: 5px solid #ccc;
+    margin: 20px 0;
+}
+
+blockquote p {
+    margin: 0;
+    font-style: italic;
+}
+
+blockquote cite {
+    display: block;
+    text-align: right;
+    color: #555;
+}
+
+.about-content ul {
+    list-style-type: decimal;
+    padding-left: 20px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .algorithms {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    footer {
+        position: static;
+    }
+}
+
+@media (max-width: 480px) {
+    .visualize-btn, .select-btn {
+        padding: 10px 20px;
+    }
+
+    .compare-btn {
+        width: 100%;
+        padding: 15px;
+    }
+
+    main {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Sort Visualization</title>
+  <link rel="stylesheet" href="quick.css">
+  <style>
+    /* Additional mobile-responsive styles */
+    @media (max-width: 600px) {
+      #chart {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+  <div class="buttons">
+    <label for="speed">Speed</label>
+    <input type="range" id="speed" min="1" max="5" value="1">
+  </div>
+  <div class="buttons">
+    <label for="size">Size</label>
+    <input type="number" id="size" min="5" max="100" value="20"> 
+    <button id="start">Generate</button>
+  </div>
+
+  <!-- Algorithm Information -->
+  <div id="info">
+    <h2>Quick Sort Algorithm</h2>
+    <p><strong>Time Complexity:</strong> 
+      Best Case: O(n log n), Average Case: O(n log n), Worst Case: O(n^2)<br>
+      <strong>Space Complexity:</strong> O(log n)</p>    
+      <h3>Educational Purposes</h3>
+      <p>Quick sort is an efficient, comparison-based, divide and conquer sorting algorithm. It is often faster in practice than other O(n log n) algorithms due to its small, constant factors and good cache performance.</p>
+
+      <h3>Large Data Sets</h3>
+      <p>Quick sort is often used for large datasets because of its average-case time complexity of O(n log n). It is also typically faster for smaller datasets compared to merge sort due to lower overhead.</p>
+
+      <h3>Divide and Conquer</h3>
+      <p>Quick sort is a divide-and-conquer algorithm, which means it works by dividing the problem into smaller sub-problems, solving them independently, and then combining their solutions.</p>
+
+      <h3>Historical Context</h3>
+  <p>Quick sort was developed by Tony Hoare in 1959 and has been widely used due to its efficiency and simplicity.</p>
+ </div>
+
+  <script src="quick.js"></script>
+</body>
+</html>
