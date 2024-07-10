@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const compareButton = document.querySelector('.compare-btn');
     let selectedAlgorithms = [];
 
+    // Add event listeners to visualize buttons
     visualizeButtons.forEach(button => {
         button.addEventListener('click', event => {
             const algorithm = event.target.closest('.card').querySelector('p').innerText;
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Add event listeners to select buttons
     selectButtons.forEach(button => {
         button.addEventListener('click', event => {
             const algorithm = event.target.closest('.card').querySelector('p').innerText;
@@ -21,31 +23,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    compareButton.addEventListener('click', () => {
-        if (selectedAlgorithms.length > 1) {
-            compareAlgorithms(selectedAlgorithms);
-        } else {
-            alert('Select at least two algorithms to compare.');
-        }
+    // Add event listener to compare button
+    compareButton.addEventListener('click', event => {
+        compareAlgorithms(selectedAlgorithms);
     });
 
+    // Function to visualize the selected algorithm
     function visualizeAlgorithm(algorithm) {
-        // Logic to visualize the algorithm
-        // Example: window.location.href = `${algorithm.toLowerCase()}Sort.html`;
-        alert(`Visualizing ${algorithm}`);
+        let htmlFile;
+        switch (algorithm) {
+            case 'Bubble Sort':
+                htmlFile = 'bubbleSort.html';
+                break;
+            case 'Merge Sort':
+                htmlFile = 'mergeSort.html';
+                break;
+            case 'Insertion Sort':
+                htmlFile = 'insertionSort.html';
+                break;
+            case 'Quick Sort':
+                htmlFile = 'quickSort.html';
+                break;
+            case 'Selection Sort':
+                htmlFile = 'selectionSort.html';
+                break;
+            default:
+                console.log('Algorithm not supported');
+                return;
+        }
+
+        window.location.href = htmlFile;
     }
 
-    function compareAlgorithms(algorithms) {
-        // Logic to compare algorithms
-        // Example: window.location.href = `compare.html?algorithms=${algorithms.join(',')}`;
-        alert(`Comparing ${algorithms.join(', ')}`);
-    }
-
+    // Function to update the compare button state
     function updateCompareButton() {
         if (selectedAlgorithms.length > 1) {
-            compareButton.style.display = 'block';
+            compareButton.disabled = false;
         } else {
-            compareButton.style.display = 'none';
+            compareButton.disabled = true;
         }
+    }
+
+    // Function to compare selected algorithms
+    function compareAlgorithms(algorithms) {
+        console.log('Comparing algorithms:', algorithms);
+        // Implement comparison logic here
     }
 });
