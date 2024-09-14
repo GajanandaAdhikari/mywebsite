@@ -1,0 +1,141 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    display:block;
+    align-items: center;
+    background-color: #1e1e1e;
+    color: #c3bbbb;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #ff69b4;
+}
+
+.system-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cpu, .main-memory, .page-table, .secondary-storage {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.memory-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.memory-frames, .page-table-entries {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+    border: 2px solid #ff69b4;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #222;
+}
+
+.frame {
+    background-color: #444;
+    color: #c3bbbb;
+    padding: 15px;
+    text-align: center;
+    margin: 5px 0;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.frame.highlight {
+    background-color: #00ff00;
+}
+
+.frame.animate {
+    animation: movePage 2s ease;
+}
+
+@keyframes movePage {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-50px); }
+    100% { transform: translateY(0); }
+}
+
+.controls {
+    text-align: center;
+    margin: 20px 0;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #ff69b4;
+    color: #e6dfdf;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #ff1493;
+}
+
+#messages {
+    text-align: center;
+    margin-top: 20px;
+    color: #ff69b4;
+    font-size: 18px;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+
+.card {
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(183, 176, 176, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(250, 248, 248, 0.15);
+}
+
+.card h3 {
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1em;
+    color: #555; /* Slightly darker gray for paragraph text */
+}

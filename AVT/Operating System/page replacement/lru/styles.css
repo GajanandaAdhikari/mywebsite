@@ -1,0 +1,154 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.input-section, .input-pages {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#gameArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#frames {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.frame {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    background-color: #fff;
+    transition: background-color 0.5s, transform 1s;
+}
+
+#status {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.output-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.5s, color 0.5s;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+td.empty {
+    color: #bbb;
+}
+
+tr.highlight-row {
+    background-color: #e0f7fa; /* Light blue for highlighting */
+    animation: highlight 1s forwards;
+}
+
+tr.fault-row {
+    /* border: 2px solid red; */
+    background-color: hsl(0, 16%, 96%);
+}
+
+tr.hit-row {
+    background-color: #ecfaef;
+
+}
+.hit {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.fault {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+@keyframes highlight {
+    0% { background-color: #e0f7fa; }
+    100% { background-color: transparent; }
+}
+
+.pop-out {
+    animation: pop-out 1s forwards;
+}
+
+@keyframes pop-out {
+    0% { transform: scale(1); }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+.pop-in {
+    animation: pop-in 1s forwards;
+}
+
+@keyframes pop-in {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
