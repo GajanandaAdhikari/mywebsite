@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Regression Visualization</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      margin: 0;
+    }
+    canvas {
+      border: 1px solid black;
+      margin: 20px auto;
+    }
+    input[type="range"] {
+      width: 300px;
+    }
+    .controls {
+      margin: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header style="display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; padding: 20px; box-shadow: 0 4px 6px rgba(152, 150, 150, 0.1);">
+    <div style="font-size: 2em; font-weight: bold;">
+        <a href="../../main/index.html" style="text-decoration: none; color: #333;">AVT</a>
+    </div>
+    <div style="font-size: 1.5em;">
+        <a href="../main.html" style="text-decoration: none; color: #333;">Machine Learning</a>
+    </div>
+  </header>
+  <br>
+  <br>
+  <h1>Linear Regression Visualization</h1>
+  <canvas id="plot" width="500" height="500"></canvas>
+  
+  <div class="controls">
+    <label>Slope: <span id="slopeValue">1</span></label>
+    <input type="range" id="slope" min="-2" max="2" step="0.1" value="1">
+    <br><br>
+    <label>Intercept: <span id="interceptValue">0</span></label>
+    <input type="range" id="intercept" min="-50" max="50" step="1" value="0">
+    <br><br>
+    <button id="startButton" style="font-size: large;">Start Visualization</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('plot');
+    const ctx = canvas.getContext('2d');
+    
+    const slopeInput = document.getElementById('slope');
+    const interceptInput = document.getElementById('intercept');
+    const slopeValueLabel = document.getElementById('slopeValue');
+    const interceptValueLabel = document.getElementById('interceptValue');
+    const startButton = document.getElementById('startButton');
+
+    // Variables to store parameters
+    let slope = parseFloat(slopeInput.value);
+    let intercept = parseFloat(interceptInput.value);
+    
+    slopeInput.addEventListener('input', () => {
+      slope = parseFloat(slopeInput.value);
+      slopeValueLabel.textContent = slope;
+    });
+
+    interceptInput.addEventListener('input', () => {
+      intercept = parseFloat(interceptInput.value);
+      interceptValueLabel.textContent = intercept;
+    });
+
+    // Linear regression equation: y = slope * x + intercept
+    function drawLine(slope, intercept, delay = 50) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+      drawAxes(); // Draw the axes
+
+      let x1 = -50, x2 = 50; // Data range for x
+      let steps = 100; // Number of steps to create delay effect
+
+      let currentX1 = -50, currentX2 = -50;
+      let currentSlope = 0, currentIntercept = 0;
+
+      // Animation with delay to visualize the process
+      let stepCount = 0;
+      const interval = setInterval(() => {
+        stepCount++;
+        currentSlope += slope / steps;
+        currentIntercept += intercept / steps;
+
+        currentX2 = x1 + (x2 - x1) * (stepCount / steps);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawAxes();
+        
+        // Draw line progressively
+        drawLineSegment(currentSlope, currentIntercept, currentX1, currentX2);
+        
+        if (stepCount === steps) {
+          clearInterval(interval);
+        }
+      }, delay);
+    }
+
+    // Draw a line from point (x1, y1) to (x2, y2) using the slope-intercept form
+    function drawLineSegment(slope, intercept, x1, x2) {
+      const canvasX1 = transformX(x1);
+      const canvasY1 = transformY(slope * x1 + intercept);
+      const canvasX2 = transformX(x2);
+      const canvasY2 = transformY(slope * x2 + intercept);
+
+      ctx.beginPath();
+      ctx.moveTo(canvasX1, canvasY1);
+      ctx.lineTo(canvasX2, canvasY2);
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    // Transform data points to canvas coordinates
+    function transformX(x) {
+      return (x + 50) * 5;
+    }
+    
+    function transformY(y) {
+      return canvas.height - (y + 50) * 5;
+    }
+
+    // Draw the x and y axes
+    function drawAxes() {
+      // Draw x-axis
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.height / 2);
+      ctx.lineTo(canvas.width, canvas.height / 2);
+      ctx.strokeStyle = "black";
+      ctx.stroke();
+
+      // Draw y-axis
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2, 0);
+      ctx.lineTo(canvas.width / 2, canvas.height);
+      ctx.stroke();
+    }
+
+    // Start the visualization when button is clicked
+    startButton.addEventListener('click', () => {
+      drawLine(slope, intercept);
+    });
+
+    // Initial drawing of axes
+    drawAxes();
+  </script>
+</body>
+</html>

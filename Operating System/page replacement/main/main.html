@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paging and Page Faults Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
+       
+        <div style="font-size: 2em; font-weight: bold;">
+            <a href="../../../main/index.html" style="text-decoration: none; color: #d6cfcf;">AVT</a>
+        </div>
+
+        <div style="font-size: 1.5em;">
+            <a href="../../main.html" style="text-decoration: none; color: #d6cfcf;">Operating System</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Paging and Page Faults Simulation</h1>
+        <div class="system-container">
+            <div class="cpu">
+                <h2>CPU</h2>
+                <div id="cpuRequest" class="cpu-request">Requesting Page: -</div>
+            </div>
+
+            <div class="memory-container">
+                <div class="main-memory">
+                    <h2>Main Memory</h2>
+                    <div id="mainMemoryFrames" class="memory-frames"></div>
+                </div>
+
+                <div class="page-table">
+                    <h2>Page Table</h2>
+                    <div id="pageTable" class="page-table-entries"></div>
+                </div>
+
+                <div class="secondary-storage">
+                    <h2>Secondary Storage</h2>
+                    <div id="secondaryStorage" class="memory-frames">
+                        <div class="frame" id="storageP0">P0</div>
+                        <div class="frame" id="storageP1">P1</div>
+                        <div class="frame" id="storageP2">P2</div>
+                        <div class="frame" id="storageP3">P3</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <h2>Simulate Page Requests</h2>
+            <button onclick="requestPage(0)">Request Page 0</button>
+            <button onclick="requestPage(1)">Request Page 1</button>
+            <button onclick="requestPage(2)">Request Page 2</button>
+            <button onclick="requestPage(3)">Request Page 3</button>
+        </div>
+
+        <div id="messages" class="messages"></div>
+    </div>
+    <br><br>
+
+    <div class="secondary-storage" style="display: block; align-items: center;">
+            <button>
+                <h3>LRU</h3>
+                <p>Page Replacement</p>
+            </button>
+            
+            <a href="../optimal/optimal.html">
+            <button href="../optimal/optimal.html">
+                <h3>Optimal</h3>
+                <p>Page Replacement</p>
+            </button>
+             </a>
+        
+    </div>
+    <br>
+    
+    <script src="script.js"></script>
+</body>
+</html>

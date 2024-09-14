@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merge Sort Visualization</title>
+  <link rel="stylesheet" href="merge.css">
+  <style>
+    /* Additional mobile-responsive styles */
+    @media (max-width: 600px) {
+      #chart {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header style="display: flex; justify-content: space-between; align-items: center; background-color: #e9e9e9; padding: 20px; box-shadow: 0 4px 6px rgba(152, 150, 150, 0.1);">
+    <div style="font-size: 2em; font-weight: bold;">
+        <a href="../../main/index.html" style="text-decoration: none; color: #333;">AVT</a>
+    </div>
+    <div style="font-size: 1.5em;">
+        <a href="index.html" style="text-decoration: none; color: #333;">Sorting Algorithms</a>
+    </div>
+</header>
+
+  <div id="chart"></div>
+  <div class="buttons">
+    <label for="speed">Speed</label>
+    <input type="range" id="speed" min="1" max="5" value="1">
+  </div>
+  <div class="buttons">
+    <label for="size">Size</label>
+    <input type="number" id="size" min="5" max="100" value="20"> 
+    <button id="start">Generate</button>
+  </div>
+
+  <!-- Algorithm Information -->
+  <div id="info">
+    <h2>Merge Sort Algorithm</h2>
+    <p><strong>Time Complexity:</strong> 
+      Best Case: O(n log n), Average Case: O(n log n), Worst Case: O(n log n)<br>
+      <strong>Space Complexity:</strong> O(n)</p>    
+      <h3>Educational Purposes</h3>
+      <p>Merge sort is an efficient, stable, comparison-based, divide and conquer sorting algorithm. Most implementations produce a stable sort, meaning that the implementation preserves the input order of equal elements in the sorted output.</p>
+
+      <h3>Large Data Sets</h3>
+      <p>Merge sort is often preferred for sorting linked lists, as it can easily handle extremely large data sets and offers predictable O(n log n) performance.</p>
+
+      <h3>Stable Sorting</h3>
+      <p>Merge sort is a stable sort with worst-case performance of O(n log n). This stability and predictability makes it a good choice for use cases where a stable sort is required and where the extra space used is not an issue.</p>
+
+      <h3>Historical Context</h3>
+  <p>Merge sort was invented by John von Neumann in 1945. It is one of the earliest sorting algorithms that takes advantage of the divide-and-conquer paradigm, and its principles can be seen in many other algorithms.</p>
+ </div>
+
+  <script src="merge.js"></script>
+</body>
+</html>

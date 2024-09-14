@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Linear Regression for House Prices</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      margin-top: 0;
+    }
+    canvas {
+      border: 1px solid black;
+      margin: 20px auto;
+    }
+    .controls {
+      margin: 20px;
+    }
+    input[type="number"], input[type="submit"] {
+      padding: 8px;
+      margin: 5px;
+      font-size: 16px;
+    }
+    .data-list {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header style="display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; padding: 20px; box-shadow: 0 4px 6px rgba(152, 150, 150, 0.1);">
+    <div style="font-size: 2em; font-weight: bold;">
+        <a href="../../main/index.html" style="text-decoration: none; color: #333;">AVT</a>
+    </div>
+    <div style="font-size: 1.5em;">
+        <a href="../main.html" style="text-decoration: none; color: #333;">Machine Learning</a>
+    </div>
+  </header>
+
+  <h1>Interactive Linear Regression for House Prices</h1>
+  <canvas id="plot" width="500" height="500"></canvas>
+
+  <div class="controls">
+    <h2>Add Data Points</h2>
+    <label for="sizeInput">House Size (sq ft):</label>
+    <input type="number" id="sizeInput" placeholder="e.g. 1500">
+    <br>
+    <label for="priceInput">House Price (in 1000s):</label>
+    <input type="number" id="priceInput" placeholder="e.g. 250">
+    <br>
+    <button id="addButton">Add Data Point</button>
+  </div>
+
+  <div class="data-list">
+    <h3>Data Points:</h3>
+    <ul id="dataPoints"></ul>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('plot');
+    const ctx = canvas.getContext('2d');
+    const sizeInput = document.getElementById('sizeInput');
+    const priceInput = document.getElementById('priceInput');
+    const dataPointsList = document.getElementById('dataPoints');
+    const addButton = document.getElementById('addButton');
+    
+    let data = [];
+
+    addButton.addEventListener('click', () => {
+      const size = parseFloat(sizeInput.value);
+      const price = parseFloat(priceInput.value);
+
+      if (!isNaN(size) && !isNaN(price)) {
+        data.push({ size, price });
+        updateDataList();
+        calculateAndDrawRegression();
+      } else {
+        alert('Please enter valid numbers for both size and price.');
+      }
+    });
+
+    // Update the displayed data list
+    function updateDataList() {
+      dataPointsList.innerHTML = '';
+      data.forEach((point, index) => {
+        const li = document.createElement('li');
+        li.textContent = `Size: ${point.size} sq ft, Price: $${point.price}k`;
+        dataPointsList.appendChild(li);
+      });
+    }
+
+    // Calculate the slope and intercept for the regression line
+    function calculateRegressionLine() {
+      const n = data.length;
+      if (n < 2) return null; // Need at least two points to calculate
+
+      let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+      data.forEach(point => {
+        sumX += point.size;
+        sumY += point.price;
+        sumXY += point.size * point.price;
+        sumX2 += point.size * point.size;
+      });
+
+      const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+      const intercept = (sumY - slope * sumX) / n;
+
+      return { slope, intercept };
+    }
+
+    // Draw the regression line and data points on the canvas
+    function calculateAndDrawRegression() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawAxes();
+
+      // Draw the data points
+      data.forEach(point => {
+        drawDataPoint(point.size, point.price);
+      });
+
+      const regressionLine = calculateRegressionLine();
+      if (regressionLine) {
+        drawLine(regressionLine.slope, regressionLine.intercept);
+      }
+    }
+
+    // Draw the x and y axes
+    function drawAxes() {
+      // Draw x-axis
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.height / 2);
+      ctx.lineTo(canvas.width, canvas.height / 2);
+      ctx.strokeStyle = "black";
+      ctx.stroke();
+
+      // Draw y-axis
+      ctx.beginPath();
+      ctx.moveTo(canvas.width / 2, 0);
+      ctx.lineTo(canvas.width / 2, canvas.height);
+      ctx.stroke();
+    }
+
+    // Draw a single data point on the canvas
+    function drawDataPoint(size, price) {
+      const canvasX = transformX(size);
+      const canvasY = transformY(price);
+
+      ctx.beginPath();
+      ctx.arc(canvasX, canvasY, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = "blue";
+      ctx.fill();
+      ctx.strokeStyle = "black";
+      ctx.stroke();
+    }
+
+    // Draw the regression line
+    function drawLine(slope, intercept) {
+      const x1 = -50;
+      const x2 = 2500;
+      const y1 = slope * x1 + intercept;
+      const y2 = slope * x2 + intercept;
+
+      ctx.beginPath();
+      ctx.moveTo(transformX(x1), transformY(y1));
+      ctx.lineTo(transformX(x2), transformY(y2));
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    // Transform data points to canvas coordinates
+    function transformX(x) {
+      return (x - 0) * (canvas.width / 2500); // Adjust the house size scale
+    }
+
+    function transformY(y) {
+      return canvas.height - (y - 0) * (canvas.height / 500); // Adjust the price scale
+    }
+
+    // Draw initial axes on load
+    drawAxes();
+  </script>
+</body>
+</html>

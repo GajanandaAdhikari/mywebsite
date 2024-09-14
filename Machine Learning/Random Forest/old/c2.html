@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Forest Visualizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        #controls {
+            margin-right: 50px;
+        }
+
+        #forest-visualization {
+            width: 500px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .tree {
+            margin-bottom: 20px;
+        }
+
+        .tree-header {
+            font-weight: bold;
+        }
+
+        .result {
+            color: #2f9e44;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="controls">
+            <h2>Random Forest Input</h2>
+            <label for="feature1">Feature 1 (e.g., Petal Length):</label>
+            <input type="number" id="feature1" value="4.5">
+
+            <label for="feature2">Feature 2 (e.g., Sepal Width):</label>
+            <input type="number" id="feature2" value="3.2">
+
+            <button id="run-forest">Run Random Forest</button>
+        </div>
+
+        <div id="forest-visualization">
+            <h2>Decision Trees</h2>
+            <div id="tree-results"></div>
+            <div id="final-result" class="result"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.1.1/d3.min.js"></script>
+    <script>
+        // Attach event listener for "Run Random Forest"
+        document.getElementById("run-forest").addEventListener("click", function() {
+            // Get the input values from the user
+            const feature1 = parseFloat(document.getElementById("feature1").value);
+            const feature2 = parseFloat(document.getElementById("feature2").value);
+
+            // Simulated Random Forest with 3 decision trees
+            const trees = [
+                {
+                    "tree": "Tree 1",
+                    "feature": "feature1",
+                    "threshold": 5.0,
+                    "left": "Class A",
+                    "right": "Class B"
+                },
+                {
+                    "tree": "Tree 2",
+                    "feature": "feature2",
+                    "threshold": 3.0,
+                    "left": "Class A",
+                    "right": "Class B"
+                },
+                {
+                    "tree": "Tree 3",
+                    "feature": "feature1",
+                    "threshold": 4.8,
+                    "left": "Class B",
+                    "right": "Class A"
+                }
+            ];
+
+            let votes = {"Class A": 0, "Class B": 0};
+
+            // Clear previous tree results
+            const treeResultsDiv = document.getElementById("tree-results");
+            treeResultsDiv.innerHTML = '';
+
+            // Simulate each tree decision and update votes
+            trees.forEach((tree, index) => {
+                let value = tree.feature === "feature1" ? feature1 : feature2;
+                let decision = value <= tree.threshold ? tree.left : tree.right;
+
+                // Update votes
+                votes[decision]++;
+
+                // Visualize the tree decision
+                const treeDiv = document.createElement("div");
+                treeDiv.className = "tree";
+                treeDiv.innerHTML = `
+                    <div class="tree-header">${tree.tree}</div>
+                    <div>Feature: ${tree.feature === "feature1" ? "Petal Length" : "Sepal Width"}</div>
+                    <div>Threshold: ${tree.threshold}</div>
+                    <div>Decision: <strong>${decision}</strong></div>
+                `;
+                treeResultsDiv.appendChild(treeDiv);
+            });
+
+            // Determine final prediction based on majority voting
+            const finalPrediction = votes["Class A"] > votes["Class B"] ? "Class A" : "Class B";
+            document.getElementById("final-result").innerText = `Final Prediction: ${finalPrediction}`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Forest Visualization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            margin-top: 20px;
+        }
+
+        .controls {
+            margin: 20px 0;
+        }
+
+        input[type="range"] {
+            width: 200px;
+        }
+
+        .canvas-container {
+            width: 100%;
+            max-width: 1000px;
+            height: 600px;
+            margin: 20px auto;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            border: 1px solid #333;
+        }
+
+        canvas {
+            background-color: #fff;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Forest Visualization</h1>
+    <div class="controls">
+        <label for="numTrees">Number of Trees: </label>
+        <input type="range" id="numTrees" min="1" max="50" value="5">
+        <span id="numTreesValue">5</span>
+        <br>
+        <label for="treeDepth">Max Depth of Trees: </label>
+        <input type="range" id="treeDepth" min="1" max="5" value="3">
+        <span id="treeDepthValue">3</span>
+        <br>
+        <button id="visualizeBtn">Visualize</button>
+    </div>
+    <div class="canvas-container">
+        <canvas id="forestCanvas" width="5000" height="600"></canvas>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

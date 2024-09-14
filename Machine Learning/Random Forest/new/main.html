@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Forest Visualizer</title>
+    <style>
+        body {
+            font-family: Poppins, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        #canvasContainer {
+            position: relative;
+            height: 500px;
+            background-color: #f4f4f9;
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        #binaryOutput {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        .highlight {
+            animation: highlight 0.5s ease-in-out infinite alternate;
+        }
+        @keyframes highlight {
+            from { background-color: #ffeb3b; }
+            to { background-color: #4caf50; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Random Forest Visualizer</h1>
+    <textarea id="dataInput" rows="10" cols="50" placeholder="Enter dataset matrix here"></textarea><br><br>
+    <button onclick="startVisualization()">Start Visualization</button>
+
+    <div id="canvasContainer">
+        <canvas id="treeCanvas" width="600" height="400"></canvas>
+    </div>
+
+    <div id="binaryOutput"></div>
+</div>
+
+<script>
+    // Sample dataset matrix for simplicity
+    const sampleMatrix = [
+        [1, 0, 1, 1],
+        [0, 1, 0, 0],
+        [1, 1, 1, 0],
+        [0, 0, 1, 1]
+    ];
+
+    const chosenFeatures = [0, 2]; // Simulating features chosen for bagging (for simplicity)
+
+    const trees = [];
+    const finalResults = [];
+
+    const canvas = document.getElementById('treeCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // Starts the visualization process
+    function startVisualization() {
+        visualizeBagging(sampleMatrix, chosenFeatures);
+        visualizeTrees();
+        displayFinalBinaryOutput();
+    }
+
+    // Visualizing the bagging process with color coding
+    function visualizeBagging(matrix, chosenFeatures) {
+        // Simple color coding for the chosen features
+        for (let i = 0; i < matrix.length; i++) {
+            const row = matrix[i];
+            for (let j = 0; j < row.length; j++) {
+                if (chosenFeatures.includes(j)) {
+                    // Highlight the selected feature
+                    ctx.fillStyle = 'green';
+                } else {
+                    ctx.fillStyle = 'gray';
+                }
+                ctx.fillRect(j * 100 + 50, i * 50 + 50, 40, 40);
+            }
+        }
+    }
+
+    // Visualize decision trees
+    function visualizeTrees() {
+        const tree1 = {
+            root: { value: 'Feature 0', left: 1, right: 0 }
+        };
+
+        const tree2 = {
+            root: { value: 'Feature 2', left: 1, right: 1 }
+        };
+
+        trees.push(tree1, tree2);
+
+        drawTree(tree1, 50, 200);
+        drawTree(tree2, 350, 200);
+    }
+
+    // Function to draw each tree on canvas
+    function drawTree(tree, x, y) {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x - 50, y + 50);
+        ctx.lineTo(x + 50, y + 50);
+        ctx.stroke();
+
+        // Drawing the decision node (root)
+        ctx.fillStyle = 'yellow';
+        ctx.fillRect(x - 15, y - 15, 30, 30);
+        ctx.fillStyle = 'black';
+        ctx.fillText(tree.root.value, x - 10, y + 5);
+
+        // Drawing binary decisions
+        ctx.fillStyle = 'gray';
+        ctx.fillText('0', x - 70, y + 70);
+        ctx.fillText('1', x + 60, y + 70);
+    }
+
+    // Display final binary output (majority vote)
+    function displayFinalBinaryOutput() {
+        // Simulating majority vote from trees
+        finalResults.push(1); // Tree 1 result
+        finalResults.push(1); // Tree 2 result
+
+        const majorityVote = finalResults.reduce((a, b) => a + b, 0) > finalResults.length / 2 ? 1 : 0;
+
+        const binaryOutputDiv = document.getElementById("binaryOutput");
+        binaryOutputDiv.innerHTML = `<p>Final Binary Output (Majority Vote): ${majorityVote}</p>`;
+    }
+</script>
+
+</body>
+</html>
