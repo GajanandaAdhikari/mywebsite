@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paging and Page Faults Simulation</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
-       
+
         <div style="font-size: 2em; font-weight: bold;">
             <a href="../../../main/index.html" style="text-decoration: none; color: #d6cfcf;">AVT</a>
         </div>
@@ -62,21 +64,32 @@
     <br><br>
 
     <div class="secondary-storage" style="display: block; align-items: center;">
+        <a href="../fifo/fifo.html">
+            <button>
+                <h3>FIFO</h3>
+                <p>FIFP Replacement</p>
+            </button>
+        </a>
+
+
+        <a href="../lru/lru.html">
             <button>
                 <h3>LRU</h3>
                 <p>Page Replacement</p>
             </button>
-            
-            <a href="../optimal/optimal.html">
+        </a>
+
+        <a href="../optimal/optimal.html">
             <button href="../optimal/optimal.html">
                 <h3>Optimal</h3>
                 <p>Page Replacement</p>
             </button>
-             </a>
-        
+        </a>
+
     </div>
     <br>
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>
