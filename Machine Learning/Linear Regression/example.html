@@ -25,9 +25,25 @@
     .data-list {
       margin-top: 20px;
     }
+    .explanation {
+      margin-top: 40px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+    .explanation h2 {
+      margin-top: 0;
+    }
+    .explanation p {
+      text-align: left;
+    }
   </style>
 </head>
 <body>
+
+
   <header style="display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; padding: 20px; box-shadow: 0 4px 6px rgba(152, 150, 150, 0.1);">
     <div style="font-size: 2em; font-weight: bold;">
         <a href="../../main/index.html" style="text-decoration: none; color: #333;">AVT</a>
@@ -121,6 +137,7 @@
       const regressionLine = calculateRegressionLine();
       if (regressionLine) {
         drawLine(regressionLine.slope, regressionLine.intercept);
+        drawNumbersOnLine(regressionLine.slope, regressionLine.intercept);
       }
     }
 
@@ -168,6 +185,22 @@
       ctx.stroke();
     }
 
+    // Draw numbers along the regression line
+    function drawNumbersOnLine(slope, intercept) {
+      // We will plot the numbers at 500, 1000, 1500, 2000, and 2500 sq ft
+      const points = [500, 1000, 1500, 2000, 2500];
+
+      points.forEach(size => {
+        const price = slope * size + intercept;
+        const canvasX = transformX(size);
+        const canvasY = transformY(price);
+
+        ctx.fillStyle = "black";
+        ctx.font = "14px Arial";
+        ctx.fillText(`(${size}, ${Math.round(price)})`, canvasX + 5, canvasY - 5);
+      });
+    }
+
     // Transform data points to canvas coordinates
     function transformX(x) {
       return (x - 0) * (canvas.width / 2500); // Adjust the house size scale
@@ -180,5 +213,23 @@
     // Draw initial axes on load
     drawAxes();
   </script>
+
+  <!-- Explanation Component -->
+  <div class="explanation">
+    <h2>How This Page Works</h2>
+    <p>This page demonstrates the basic concept of <strong>linear regression</strong>, a fundamental machine learning algorithm used to find the relationship between two variables—in this case, house size and house price.</p>
+    
+    <h3>Key Concepts:</h3>
+    <ul>
+      <li><strong>Data Points</strong>: Each point you add represents a specific house size (in square feet) and its corresponding price (in thousands of dollars).</li>
+      <li><strong>Canvas Entries</strong>: The blue dots on the canvas represent the data points. Each point corresponds to a house's size and price.</li>
+      <li><strong>Regression Line</strong>: The red line represents the predicted house price based on the house size using the linear regression algorithm. The numbers along the line show what the model predicts for various house sizes (e.g., 500, 1000, 1500 sq ft).</li>
+    </ul>
+
+    <h3>What is Linear Regression?</h3>
+    <p>Linear regression is a supervised learning algorithm that models the relationship between a dependent variable (such as house price) and an independent variable (such as house size) using a straight line. The algorithm calculates the <strong>slope</strong> and <strong>intercept</strong> of the line that best fits the data points. This line is represented by the equation:</p>
+    <p><strong>y = mx + b</strong></p>
+    <p>where <strong>y</strong> is the dependent variable, <strong>x</strong> is the independent variable, <strong>m</strong> is the slope of the line, and <strong>b</strong> is the intercept. The goal of linear regression is to find the best-fitting line that minimizes the difference between the predicted values and the actual values, thereby enabling accurate predictions of the dependent variable based on new data.</p>
+</div>
 </body>
 </html>
