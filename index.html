@@ -1,23 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home</title>
-        <link rel="stylesheet" href="./style/style-home.css" />
-    </head>
-    <body>
-        <nav>
-            <ul>
-                <li><a class="nav-Home" href="index.html">Home</a></li>
-                <li></li><a class="nav-About" href="about.html">About</a></li>
-                <li></li><a class="nav-Source" href="sources.html">Sources</a></li>
-            </ul>
-        </nav>
-        <div class="content">
-            <div class="p">
-                Just a speck to rule the world right!
-            </div>
-        </div>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gajananda Adhikari</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
+  <style>
+    /* Base Styles */
+    :root {
+      --bg-light: #f0f0f0;
+      --text-light: #333;
+      --bg-dark: #222;
+      --text-dark: #eee;
+      --primary-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      --transition-speed: 0.3s;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--primary-font);
+      line-height: 1.6;
+      transition: background var(--transition-speed), color var(--transition-speed);
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      scroll-behavior: smooth;
+    }
+    header, section, footer {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .tagline {
+      font-size: 1rem;
+      font-style: italic;
+      color: #666;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+      transition: color var(--transition-speed);
+    }
+    nav ul li a:hover {
+      color: #007acc;
+    }
+    .toggle-mode {
+      cursor: pointer;
+      background: none;
+      border: 1px solid currentColor;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    /* Sections */
+    section {
+      margin-top: 2rem;
+      border-bottom: 1px solid #ccc;
+    }
+    section:last-of-type {
+      border-bottom: none;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .content {
+      max-width: 800px;
+      margin: auto;
+    }
+    /* Responsive Navigation */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      nav ul {
+        flex-direction: column;
+      }
+    }
+    /* Dark mode */
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+    }
+    body.dark .tagline {
+      color: #aaa;
+    }
+    body.dark nav ul li a:hover {
+      color: #66bfff;
+    }
+    body.dark header, body.dark section {
+      border-color: #444;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Navigation and Mode Toggle -->
+  <header>
+    <div>
+      <h1>Gajananda Adhikari</h1>
+      <p class="tagline">Innovation through Kindness and Force of Ideas</p>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certifications">Certifications &amp; Awards</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="toggle-mode" id="toggleMode">Toggle Dark/Light</button>
+  </header>
+  
+  <!-- About Me Section -->
+  <section id="about">
+    <div class="content">
+      <h2>About Me</h2>
+      <p>
+        I am a final year Bachelor of Engineering student specializing in Information Technology, with a strong interest in software architecture, cybersecurity, and cloud technologies. I am actively seeking opportunities in roles such as Software Architect, Cybersecurity Engineer, and Cloud Solutions Architect. My journey has been driven by a passion for innovation and a commitment to excellence.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="content">
+      <h2>Projects</h2>
+      <h3>COREQ - Community for Reprising Qualitative Research</h3>
+      <p>
+        Developed a collaborative platform for sharing research, forming project teams, and fostering innovation within the academic community. This project highlights my skills in web development and client presentation.
+      </p>
+      <h3>AnaLUNG - Lung Cancer Detection Using CNN</h3>
+      <p>
+        Created a web application that utilizes convolutional neural networks for early lung cancer detection. This project involved building a user-friendly interface for healthcare professionals and applying data science techniques for accurate analysis.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="content">
+      <h2>Skills</h2>
+      <ul>
+        <li><strong>Programming Languages:</strong> C, Python, JavaScript</li>
+        <li><strong>Cybersecurity:</strong> Theoretical knowledge, vulnerability assessment, basic encryption techniques, TCP/IP fundamentals</li>
+        <li><strong>DevOps Awareness:</strong> Basic CI/CD with Jenkins, minimal experience with Docker</li>
+        <li><strong>Web Development:</strong> Website design, React.js, HTML5</li>
+        <li><strong>Soft Skills:</strong> Team Coordination, Client Presentation, Communication</li>
+        <li><strong>Other Skills:</strong> Report Writing, Microsoft Office</li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- Experience Section -->
+  <section id="experience">
+    <div class="content">
+      <h2>Experience</h2>
+      <h3>Coordinator, Cosmos ICT Club</h3>
+      <p><em>Nov 2023 – Present, Lalitpur District, Nepal</em></p>
+      <p>
+        Organized and led tech-focused educational programs including Cybersecurity Awareness, Web Development Bootcamps, and ICT Competitions.
+      </p>
+      <h3>President, coreQ</h3>
+      <p><em>Sep 2023 – Dec 2023, Lalitpur District, Nepal</em></p>
+      <p>
+        Directed team activities and coordinated events and tech talks, emphasizing leadership and innovative solutions.
+      </p>
+      <h3>Founder &amp; CTO, coreQ</h3>
+      <p><em>Mar 2022 – Sep 2023, Lalitpur District, Nepal</em></p>
+      <p>
+        Established a student-driven organization focusing on technology and innovation; managed projects and collaborations.
+      </p>
+      <h3>Campus Director, Hult Prize at Cosmos College</h3>
+      <p><em>Mar 2022 – Mar 2023, Lalitpur District, Nepal</em></p>
+      <p>
+        Coordinated on-campus events that connected students with industry professionals and encouraged creative problem-solving.
+      </p>
+      <h3>CTO, Myers Pressler Publishing House</h3>
+      <p><em>Jan 2021 – Apr 2022, Lalitpur District, Nepal</em></p>
+      <p>
+        Led technology operations and strategic planning for the publishing house, enhancing efficiency through innovative tech solutions.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Certifications & Awards Section -->
+  <section id="certifications">
+    <div class="content">
+      <h2>Certifications &amp; Awards</h2>
+      <ul>
+        <li>Cybersecurity Awareness Session Facilitator</li>
+        <li>MATLAB Certified</li>
+        <li>Certificate of Appreciation for Outstanding Contribution to Figma Training</li>
+        <li>Hult Prize On-Campus Program Achievement Certificate</li>
+        <li>Certificate of Exemplary Leadership</li>
+        <li>Awards: Hackathon Yatra 4.0, Orbit Engineering Expo, NASA International Space Apps Challenge, Revampathon</li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="content">
+      <h2>Contact</h2>
+      <p>
+        Interested in collaborating or learning more about my work? Feel free to reach out via email at
+        <a href="mailto:cosmicgz11@gmail.com">cosmicgz11@gmail.com</a>.
+      </p>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="content">
+      <p>&copy; 2025 Gajananda Adhikari. All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <!-- Script for Toggle Dark/Light Mode -->
+  <script>
+    const toggleButton = document.getElementById('toggleMode');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+  </script>
+</body>
 </html>
